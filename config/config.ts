@@ -1,24 +1,28 @@
 import * as R from 'ramda'
+import * as dotenv from 'dotenv'
 
 const environment = R.isNil(process.env.DYNO) ? 'local' : 'heroku'
 
-interface Config {
-  environment: string
-  port: number
-  logLevel: string
+if (environment === 'local') {
+  dotenv.config()
 }
 
-const environments = {
-  local: {
-    environment,
-    logLevel: 'silly',
-    port: 3000
-  },
-  heroku: {
-    environment,
-    logLevel: 'info',
-    port: parseInt(process.env.PORT || '', 10)
+interface Config {
+  environment: string
+  port: string
+  logLevel: string
+  feedbin: {
+    username: string
+    password: string
   }
 }
 
-export const config: Config = R.prop(environment, environments)
+export const config: Config = {
+  environment,
+  feedbin: {
+    username: process.env.FEEDBIN_USER || '',
+    password: process.env.FEEDBIN_PASS || ''
+  },
+  logLevel: environment === 'local' ? 'silly' : 'info',
+  port: process.env.PORT || '3000'
+}
