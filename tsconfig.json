@@ -14,6 +14,5 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["node"]
   },
-  "include": ["**/*.ts"],
-  "compileOnSave": true
+  "include": ["**/*.ts"]
 }

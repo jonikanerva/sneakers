@@ -13,12 +13,15 @@
   },
   "scripts": {
     "start": "node build/app/server.js",
+    "s": "run-p watch:build watch:compile",
     "build": "tsc",
     "test": "echo OK",
     "lint": "yarn lint:tslint && yarn lint:prettier",
     "lint:prettier": "prettier --list-different --parser typescript --config package.json '**/*.ts'",
     "lint:tslint": "tslint --project .",
-    "postinstall": "yarn build"
+    "postinstall": "yarn build",
+    "watch:build": "nodemon --watch build --exec 'yarn start'",
+    "watch:compile": "tsc --watch"
   },
   "dependencies": {
     "@types/dotenv": "^6.1.0",
@@ -31,6 +34,8 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.16.3",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
