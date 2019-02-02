@@ -1,19 +1,12 @@
 import * as express from 'express'
-import * as winston from 'winston'
-import { Application, Request, Response } from 'express'
 import { config } from '../config/config'
+import { getHealth } from './getHealth'
+import { logger } from './logger'
 
-const app: Application = express()
-export const logger = winston.createLogger({
-  level: config.logLevel,
-  transports: [new winston.transports.Console()]
-})
+const app: express.Application = express()
 
 app.disable('x-powered-by')
-
-app.get('/health', (_req: Request, res: Response) => {
-  res.json({ status: 'ok' })
-})
+app.get('/health', getHealth)
 
 app.listen(config.port, () =>
   logger.info(
