@@ -1,5 +1,5 @@
 import * as express from 'express'
-import { getHealth } from './getHealth'
+import { getHealth } from './controllers/getHealth'
 
 const app: express.Application = express()
 
