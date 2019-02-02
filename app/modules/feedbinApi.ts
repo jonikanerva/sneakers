@@ -2,14 +2,17 @@ import axios from 'axios'
 import * as R from 'ramda'
 import { config } from '../../config/config'
 
-const axiosConfig = {
-  url:
-    'https://api.feedbin.com/v2/saved_searches/5873.json?include_entries=true',
-  auth: {
-    username: config.feedbin.username,
-    password: config.feedbin.password
-  }
-}
+const adidas = 4068
+const nike = 5873
 
-export const getNike = (): Promise<any> =>
-  axios(axiosConfig).then(R.prop('data'))
+const getFeedBin = (id: number): Promise<any> =>
+  axios({
+    url: `https://api.feedbin.com/v2/saved_searches/${id}.json?include_entries=true`,
+    auth: {
+      username: config.feedbin.username,
+      password: config.feedbin.password
+    }
+  }).then(R.prop('data'))
+
+export const getNike = () => getFeedBin(nike)
+export const getAdidas = () => getFeedBin(adidas)
