@@ -17,7 +17,8 @@
     "test": "echo OK",
     "lint": "yarn lint:tslint && yarn lint:prettier",
     "lint:prettier": "prettier --list-different --parser typescript --config package.json '**/*.ts'",
-    "lint:tslint": "tslint --project ."
+    "lint:tslint": "tslint --project .",
+    "postinstall": "yarn build"
   },
   "dependencies": {
     "@types/express": "^4.16.1",
