@@ -20,7 +20,26 @@ export const createHtml = (feed: FeedResponse[]): string => `
 <title>Sneakers</title>
 
 <style>
-.content {
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+#navi {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%
+}
+.navibutton {
+  width: 50%;
+  text-align: center;
+  font-size: 40px;
+  padding: 20px;
+}
+.navibutton a {
+  text-decoration: none;
+  color: black;
+}
+
+#content {
   display: flex;
   flex-wrap: wrap;
   width: 100%
@@ -40,7 +59,16 @@ export const createHtml = (feed: FeedResponse[]): string => `
 </style>
 
 <body>
-  <div class='content'>
+  <div id='navi'>
+    <div class='navibutton'>
+      <a href="?b=nike">nike</a>
+    </div>
+    <div class='navibutton'>
+      <a href="?b=adidas">adidas</a>
+    </div>
+  </div>
+
+  <div id='content'>
     ${drawItems(feed)}
   </div>
 </body>
