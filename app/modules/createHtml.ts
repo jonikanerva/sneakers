@@ -1,13 +1,33 @@
 import * as R from 'ramda'
 import { FeedResponse } from '../modules/parseFeeds'
+import { DateTime } from 'luxon'
 
-const drawItem = (item: FeedResponse): string => `
+let lastDay = ''
+
+const drawDate = (date: DateTime): string => `
+<div class='date'>
+  ${date.toLocaleString(DateTime.DATE_MED)}
+</div>
+`
+
+const drawTile = (item: FeedResponse): string => `
 <div class='tile'>
   <a href="${item.url}">
     <img alt="${item.title}" alt="${item.title}" src="${item.image}"/>
   </a>
 </div>
 `
+
+const drawItem = (item: FeedResponse): string => {
+  const date = DateTime.fromISO(item.published)
+  const day = date.toFormat('dd')
+  const html =
+    lastDay !== day ? drawDate(date) + drawTile(item) : drawTile(item)
+
+  lastDay = day
+
+  return html
+}
 
 export const drawItems = (feed: FeedResponse[]): string =>
   R.compose(
@@ -37,7 +57,8 @@ export const createHtml = (brand: string) => (feed: FeedResponse[]): string => `
     width: 50%;
     text-align: center;
     font-size: 40px;
-    padding: 20px;
+    font-weight: bold;
+    padding: 20px 0 0 0;
   }
   .navibutton a {
     text-decoration: none;
@@ -57,6 +78,14 @@ export const createHtml = (brand: string) => (feed: FeedResponse[]): string => `
     height: 300px;
     overflow: hidden;
     flex-grow: 1;
+  }
+  .date {
+    break-before: always;
+    width: 100%;
+    flex-grow: 1;
+    font-size: 25px;
+    font-weight: 200;
+    padding: 25px 0px 10px 5px;
   }
   .tile img {
     width: 100%;
