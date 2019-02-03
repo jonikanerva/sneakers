@@ -11,6 +11,7 @@ interface Config {
   environment: string
   port: string
   logLevel: string
+  redisUrl: string
   feedbin: {
     username: string
     password: string
@@ -24,5 +25,6 @@ export const config: Config = {
     password: process.env.FEEDBIN_PASS || ''
   },
   logLevel: environment === 'local' ? 'silly' : 'info',
-  port: process.env.PORT || '3000'
+  port: process.env.PORT || '3000',
+  redisUrl: process.env.REDIS_URL || ''
 }
