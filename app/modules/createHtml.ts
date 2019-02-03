@@ -13,7 +13,7 @@ const drawDate = (date: DateTime): string => `
 const drawTile = (item: FeedResponse): string => `
 <div class='tile'>
   <a href="${item.url}">
-    <img alt="${item.title}" alt="${item.title}" src="${item.image}"/>
+    <img title="${item.title}" alt="${item.title}" src="${item.image}"/>
   </a>
 </div>
 `
