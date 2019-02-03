@@ -11,7 +11,8 @@ const getFeedBin = (id: number): Promise<any> =>
     auth: {
       username: config.feedbin.username,
       password: config.feedbin.password
-    }
+    },
+    timeout: 5000 // number of milliseconds before the request times out
   }).then(R.prop('data'))
 
 export const getNike = () => getFeedBin(nike)
