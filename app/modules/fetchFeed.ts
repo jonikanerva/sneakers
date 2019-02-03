@@ -9,7 +9,7 @@ const fetchAndParse = (brand: string) => () =>
     .then(JSON.stringify)
 
 export const fetchFeed = (brand: string) => {
-  const cacheKey = brand === 'adidas' ? 'adidas-v1' : 'nike-v1'
+  const cacheKey = brand === 'adidas' ? 'adidas-v2' : 'nike-v2'
 
   return cacheOneHour
     .readOrElse(cacheKey, fetchAndParse(brand))

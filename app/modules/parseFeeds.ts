@@ -27,8 +27,10 @@ const pickFields = (item: any): any => {
 }
 
 const hasNoImage = R.propEq('image', undefined)
+const sortDesc = R.sort(R.descend(<any>R.prop('published')))
 
 export const parseFeed = (data: object[]): FeedResponse[] => <any>R.compose(
+    sortDesc,
     R.reject(hasNoImage),
     R.map(pickFields)
   )(data)
