@@ -3,6 +3,7 @@ import { JSDOM } from 'jsdom'
 
 export interface FeedResponse {
   id: string
+  title: string
   published: string
   url: string
   image: string
@@ -16,7 +17,7 @@ export const imageFromHtml = (html: string): string | undefined => {
 }
 
 const pickFields = (item: any): any => {
-  const fields = R.pickAll(['id', 'published', 'url'], item)
+  const fields = R.pickAll(['id', 'published', 'url', 'title'], item)
   const html = R.prop('content', item)
 
   return {
