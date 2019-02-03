@@ -1,9 +1,21 @@
 import { app } from './app'
 import { config } from '../config/config'
 import { logger } from './logger'
+import { networkInterfaces } from 'os'
+import * as R from 'ramda'
 
-app.listen(config.port, () =>
+const devIp = R.compose(
+  R.path([0, 'address']),
+  R.filter(R.propEq('internal', false)),
+  R.filter(R.propEq('family', 'IPv4')),
+  <any>R.flatten,
+  R.values
+)(networkInterfaces())
+
+app.listen(config.port, () => {
   logger.info(
-    `App running in ${config.environment} -environment on port ${config.port}!`
+    `App running in ${config.environment} -environment on ${devIp}:${
+      config.port
+    }!`
   )
-)
+})
