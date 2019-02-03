@@ -10,6 +10,7 @@ app.disable('x-powered-by')
 app.get('/', getSneakers)
 app.get('/health', getHealth)
 
+app.use(express.static('public'))
 app.use(defaultError)
 
 export { app }
