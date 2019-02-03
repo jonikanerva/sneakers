@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 import { NextFunction, Request, Response } from 'express'
-import { getAdidas, getNike } from '../modules/feedbinApi'
+import { getFeedBin } from '../modules/feedbinApi'
 import { parseFeed } from '../modules/parseFeeds'
 import { createHtml } from '../modules/createHtml'
 
@@ -9,13 +9,11 @@ export const getSneakers = (
   res: Response,
   next: NextFunction
 ): void => {
-  const brand = R.path(['query', 'b'], req)
+  const brand = R.pathOr('', ['query', 'b'], req)
 
-  brand === 'adidas'
-    ? getAdidas()
-    : getNike()
-        .then(parseFeed)
-        .then(createHtml)
-        .then(html => res.send(html))
-        .catch(next)
+  getFeedBin(brand)
+    .then(parseFeed)
+    .then(createHtml)
+    .then(html => res.send(html))
+    .catch(next)
 }
