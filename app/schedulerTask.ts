@@ -1,6 +1,6 @@
-import { renderFeed } from './modules/renderFeed'
+import { fetchFeed } from './modules/fetchFeed'
 
-Promise.all([renderFeed('nike'), renderFeed('adidas')])
+Promise.all([fetchFeed('nike'), fetchFeed('adidas')])
   .then(() => {
     console.log('Feeds fetched!')
 

@@ -1,6 +1,7 @@
 import * as R from 'ramda'
 import { NextFunction, Request, Response } from 'express'
-import { renderFeed } from '../modules/renderFeed'
+import { createHtml } from '../modules/createHtml'
+import { fetchFeed } from '../modules/fetchFeed'
 
 export const getSneakers = (
   req: Request,
@@ -9,7 +10,8 @@ export const getSneakers = (
 ): void => {
   const brand = R.pathOr('', ['query', 'b'], req)
 
-  renderFeed(brand)
+  fetchFeed(brand)
+    .then(createHtml(brand))
     .then(html => res.send(html))
     .catch(next)
 }
