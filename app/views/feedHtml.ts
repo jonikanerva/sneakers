@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import { FeedResponse } from '../modules/parseFeeds'
+import { FeedResponse } from '../modules/parseFeed'
 import { mainHtml } from './mainHtml'
 import { DateTime } from 'luxon'
 

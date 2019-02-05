@@ -1,6 +1,6 @@
 import { cache, generateCacheKey } from './cache'
 import { getFeedBin } from './feedbinApi'
-import { parseFeed } from './parseFeeds'
+import { parseFeed } from './parseFeed'
 
 const fiveHours = 60 * 60 * 5
 const cachefiveHours = cache(fiveHours)
