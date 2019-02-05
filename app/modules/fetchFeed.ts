@@ -2,8 +2,10 @@ import { cache, generateCacheKey } from './cache'
 import { getFeedBin } from './feedbinApi'
 import { parseFeed } from './parseFeeds'
 
-const cacheOneHour = cache(3600)
-const fetchAndParse = (brand: string) => () =>
+const fiveHours = 60 * 60 * 5
+const cachefiveHours = cache(fiveHours)
+
+export const fetchAndParse = (brand: string) =>
   getFeedBin(brand)
     .then(parseFeed)
     .then(JSON.stringify)
@@ -11,7 +13,7 @@ const fetchAndParse = (brand: string) => () =>
 export const fetchFeed = (brand: string) => {
   const cacheKey = generateCacheKey(brand)
 
-  return cacheOneHour
-    .readOrElse(cacheKey, fetchAndParse(brand))
+  return cachefiveHours
+    .readOrElse(cacheKey, () => fetchAndParse(brand))
     .then(JSON.parse)
 }

@@ -1,22 +1,18 @@
-import { parseFeed } from '../modules/parseFeeds'
-import { getFeedBin } from '../modules/feedbinApi'
 import { cacheSet, generateCacheKey } from '../modules/cache'
+import { fetchAndParse } from '../modules/fetchFeed'
 import { logger } from '../logger'
 
 const fiveHours = 60 * 60 * 5
 
-const fetchAndParse = (brand: string) =>
-  getFeedBin(brand)
-    .then(parseFeed)
-    .then(JSON.stringify)
-    .then(data => {
-      const cacheKey = generateCacheKey(brand)
+const fetchParseAndStore = (brand: string) =>
+  fetchAndParse(brand).then(data => {
+    const cacheKey = generateCacheKey(brand)
 
-      cacheSet(cacheKey, fiveHours, data)
-      logger.info({ message: `${brand} feed fetched and stored!` })
-    })
+    cacheSet(cacheKey, fiveHours, data)
+    logger.info({ message: `${brand} feed fetched and stored!` })
+  })
 
-Promise.all([fetchAndParse('nike'), fetchAndParse('adidas')])
+Promise.all([fetchParseAndStore('nike'), fetchParseAndStore('adidas')])
   .then(() => {
     logger.info({ message: 'Worker finished!' })
 
