@@ -16,11 +16,11 @@ const cacheGet = (key: string): Promise<any> =>
 
 export const cacheSet = (
   key: string,
-  period: number,
+  cachePeriodSeconds: number,
   data: string
 ): Promise<any> =>
   new Promise((resolve, reject) =>
-    client.set(key, data, 'EX', period, (setError: any) =>
+    client.set(key, data, 'EX', cachePeriodSeconds, (setError: any) =>
       setError ? reject(setError) : resolve(data)
     )
   )
