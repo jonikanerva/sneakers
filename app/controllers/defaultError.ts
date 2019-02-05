@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { logger } from '../logger'
-import { errorHtml } from '../modules/errorHtml'
+import { errorHtml } from '../views/errorHtml'
 
 export const defaultError = (
   err: Error,

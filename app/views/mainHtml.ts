@@ -1,6 +1,7 @@
-export const errorHtml = () => `
+export const mainHtml = (styles: string, content: string) => `
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Sneakers</title>
   <meta charset="utf-8">
@@ -10,21 +11,16 @@ export const errorHtml = () => `
   <meta name="theme-color" content="#000000">
 
   <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-  .error {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-  }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+    ${styles}
   </style>
+</head>
 
-  <body>
-    <div class='error'>
-    an error occured<br>
-    ¯\\_(ツ)_/¯
-    </div>
-  </body>
+<body>
+  ${content}
+</body>
+
 </html>
 `
