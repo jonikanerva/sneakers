@@ -23,7 +23,7 @@
     "watch:test": "jest --watchAll --coverage=false",
     "watch:build": "nodemon --watch build --exec 'yarn start'",
     "watch:compile": "tsc --watch",
-    "worker": "node build/app/schedulerTask.js"
+    "worker": "node build/app/workers/fetchAndStore.js"
   },
   "dependencies": {
     "@types/dotenv": "^6.1.0",

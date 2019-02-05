@@ -3,7 +3,6 @@ import * as R from 'ramda'
 import { config } from '../../config/config'
 import { logger } from '../logger'
 
-const md5Hex = require('md5-hex') // tslint:disable-line:no-var-requires
 const client = redis.createClient({ url: config.redisUrl })
 
 logger.info(`Redis running on ${config.redisUrl}`)
@@ -15,7 +14,11 @@ const cacheGet = (key: string): Promise<any> =>
     )
   )
 
-const cacheSet = (key: string, period: number, data: string): Promise<any> =>
+export const cacheSet = (
+  key: string,
+  period: number,
+  data: string
+): Promise<any> =>
   new Promise((resolve, reject) =>
     client.set(key, data, 'EX', period, (setError: any) =>
       setError ? reject(setError) : resolve(data)
@@ -34,4 +37,5 @@ export const cache = (cachePeriodSeconds: number) => ({
     getOrSet(key, cachePeriodSeconds, fnc)
 })
 
-export const generateCacheKey = (key: string): string => md5Hex(key)
+export const generateCacheKey = (key: string): string =>
+  key === 'adidas' ? 'adidas-v2' : 'nike-v2'

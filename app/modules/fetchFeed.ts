@@ -1,4 +1,4 @@
-import { cache } from './cache'
+import { cache, generateCacheKey } from './cache'
 import { getFeedBin } from './feedbinApi'
 import { parseFeed } from './parseFeeds'
 
@@ -9,7 +9,7 @@ const fetchAndParse = (brand: string) => () =>
     .then(JSON.stringify)
 
 export const fetchFeed = (brand: string) => {
-  const cacheKey = brand === 'adidas' ? 'adidas-v2' : 'nike-v2'
+  const cacheKey = generateCacheKey(brand)
 
   return cacheOneHour
     .readOrElse(cacheKey, fetchAndParse(brand))
