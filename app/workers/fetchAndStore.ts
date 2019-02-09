@@ -1,16 +1,11 @@
-import { cacheSet, generateCacheKey } from '../modules/cache'
+import { cacheSet, cacheKey } from '../modules/cache'
 import { fetchAndParse } from '../modules/fetchFeed'
 import { logger } from '../logger'
 
 const fiveHours = 60 * 60 * 5
 
-const fetchParseAndStore = (brand: string): Promise<any> =>
-  fetchAndParse(brand)
-    .then(data => ({ data, cacheKey: generateCacheKey(brand) }))
-    .then(({ data, cacheKey }) => cacheSet(cacheKey, fiveHours, data))
-    .then(() => logger.info({ message: `${brand} feed fetched and stored!` }))
-
-Promise.all([fetchParseAndStore('nike'), fetchParseAndStore('adidas')])
+fetchAndParse()
+  .then(data => cacheSet(cacheKey, fiveHours, data))
   .then(() => {
     logger.info({ message: 'Worker finished!' })
 

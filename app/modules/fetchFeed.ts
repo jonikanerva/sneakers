@@ -1,19 +1,28 @@
-import { cache, generateCacheKey } from './cache'
-import { getFeedBin } from './feedbinApi'
+import * as R from 'ramda'
+import { cache, cacheKey } from './cache'
+import { fetchMultipleFeedEntries } from './fetchFeedEntries'
+import { fetchSneakerFeeds } from './fetchSneakerFeeds'
 import { parseFeed } from './parseFeed'
 
 const fiveHours = 60 * 60 * 5
 const cachefiveHours = cache(fiveHours)
+const sortDesc = R.sort(R.descend(<any>R.prop('published')))
 
-export const fetchAndParse = (brand: string) =>
-  getFeedBin(brand)
+export const fetchAndParse = (): Promise<string> =>
+  fetchSneakerFeeds()
+    .then(fetchMultipleFeedEntries)
     .then(parseFeed)
+    .then(sortDesc)
     .then(JSON.stringify)
 
-export const fetchFeed = (brand: string) => {
-  const cacheKey = generateCacheKey(brand)
-
+export const fetchFeed = (): Promise<any> => {
   return cachefiveHours
-    .readOrElse(cacheKey, () => fetchAndParse(brand))
+    .readOrElse(cacheKey, () => fetchAndParse())
     .then(JSON.parse)
 }
+
+const query = (brand: string) => (obj: any) =>
+  R.includes(brand, R.toLower(obj.content))
+
+export const fetchFeedFor = (brand: string): Promise<any> =>
+  fetchFeed().then(R.filter(query(brand)))

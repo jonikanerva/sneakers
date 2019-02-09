@@ -17,7 +17,7 @@ export const imageFromHtml = (html: string): string | undefined => {
 }
 
 const pickFields = (item: any): any => {
-  const fields = R.pickAll(['id', 'published', 'url', 'title'], item)
+  const fields = R.pickAll(['id', 'published', 'url', 'title', 'content'], item)
   const html = R.prop('content', item)
 
   return {

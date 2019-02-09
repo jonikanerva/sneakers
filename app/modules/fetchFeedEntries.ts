@@ -2,12 +2,12 @@ import axios from 'axios'
 import * as R from 'ramda'
 import { config } from '../../config/config'
 
-const adidas = 4068
-const nike = 5873
 let headerCache = {}
 
-export const getFeedBin = (brand: string): Promise<any> => {
-  const id = brand === 'adidas' ? adidas : nike
+export const fetchMultipleFeedEntries = (ids: number[]): Promise<any> =>
+  Promise.all(R.map(id => fetchFeedEntries(id), ids)).then(R.flatten)
+
+export const fetchFeedEntries = (id: number): Promise<any> => {
   const lastEtag = R.pathOr('', [id, 'etag'], headerCache)
   const lastDate = R.pathOr(
     'Tue, 01 Jan 2019 00:00:00 GMT',
@@ -16,7 +16,7 @@ export const getFeedBin = (brand: string): Promise<any> => {
   )
 
   return axios({
-    url: `https://api.feedbin.com/v2/saved_searches/${id}.json?include_entries=true`,
+    url: `https://api.feedbin.com/v2/feeds/${id}/entries.json`,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'If-Modified-Since': lastEtag,

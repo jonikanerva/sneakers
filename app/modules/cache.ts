@@ -37,5 +37,4 @@ export const cache = (cachePeriodSeconds: number) => ({
     getOrSet(key, cachePeriodSeconds, fnc)
 })
 
-export const generateCacheKey = (key: string): string =>
-  key === 'adidas' ? 'adidas-v2' : 'nike-v2'
+export const cacheKey = 'feeds-v1'

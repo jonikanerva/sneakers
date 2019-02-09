@@ -45,7 +45,7 @@ const styles = `
 .navibutton {
   width: 50%;
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   padding: 20px 0 0 0;
 }
@@ -86,8 +86,11 @@ const styles = `
 
 const renderContent = (brand: string, feed: FeedResponse[]): string => `
   <div id='navi'>
-    <div class='navibutton ${brand === 'adidas' ? '' : 'selected'}'>
+    <div class='navibutton ${brand === 'nike' ? 'selected' : ''}'>
       <a href="?b=nike">nike</a>
+    </div>
+    <div class='navibutton ${brand === 'jordan' ? 'selected' : ''}'>
+      <a href="?b=jordan">jordan</a>
     </div>
     <div class='navibutton ${brand === 'adidas' ? 'selected' : ''}'>
       <a href="?b=adidas">adidas</a>
