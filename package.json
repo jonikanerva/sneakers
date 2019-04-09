@@ -41,7 +41,7 @@
     "md5-hex": "^2.0.0",
     "ramda": "^0.26.1",
     "redis": "^2.8.0",
-    "typescript": "^3.3.3",
+    "typescript": "^3.4.2",
     "winston": "^3.2.1"
   },
   "devDependencies": {
