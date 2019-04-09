@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": "^10.15.1",
-    "yarn": "^1.13.0"
+    "node": "^11.13.0",
+    "yarn": "^1.15.2"
   },
   "scripts": {
     "start": "node build/app/server.js",
