@@ -19,7 +19,6 @@
     "lint": "yarn lint:tslint && yarn lint:prettier",
     "lint:prettier": "prettier --list-different --parser typescript --config package.json '**/*.ts'",
     "lint:tslint": "tslint --project .",
-    "heroku-postbuild": "yarn build",
     "watch:test": "jest --watchAll --coverage=false",
     "watch:build": "nodemon --watch build --exec 'yarn start'",
     "watch:compile": "tsc --watch",
