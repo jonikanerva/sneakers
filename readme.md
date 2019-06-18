@@ -13,6 +13,7 @@ start server in watch mode `yarn s`.
 # build for deploy
 
 ```
+yarn build
 docker build -t registry.gitlab.com/jonikanerva/dok/sneakers:latest .
 docker push registry.gitlab.com/jonikanerva/dok/sneakers:latest
 ```
