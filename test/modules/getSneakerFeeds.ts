@@ -14,9 +14,10 @@ describe('feedbin api', () => {
     })
   })
 
-  fit('fetchs all sneaker entries and parses them', done => {
+  it('fetchs all sneaker entries and parses them', done => {
     fetchAndParse().then(response => {
-      console.log('RESPEOSEP', response)
+      expect(response).toBeDefined()
+
       done()
     })
   })
