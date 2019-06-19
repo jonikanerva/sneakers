@@ -2,7 +2,7 @@ import { app } from './app'
 import { config } from '../config/config'
 import { logger } from './logger'
 import { networkInterfaces } from 'os'
-import * as R from 'ramda'
+import R from 'ramda'
 
 const devIp = R.compose(
   R.path([0, 'address']),
@@ -14,8 +14,6 @@ const devIp = R.compose(
 
 app.listen(config.port, () => {
   logger.info(
-    `App running in ${config.environment} -environment on ${devIp}:${
-      config.port
-    }!`
+    `App running in ${config.environment} -environment on ${devIp}:${config.port}!`
   )
 })

@@ -1,5 +1,5 @@
-import * as redis from 'redis'
-import * as R from 'ramda'
+import redis from 'redis'
+import R from 'ramda'
 import { config } from '../../config/config'
 import { logger } from '../logger'
 

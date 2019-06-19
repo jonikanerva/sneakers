@@ -1,5 +1,5 @@
 import axios from 'axios'
-import * as R from 'ramda'
+import R from 'ramda'
 import { config } from '../../config/config'
 
 let headerCache = {}

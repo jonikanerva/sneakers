@@ -1,4 +1,4 @@
-import * as R from 'ramda'
+import R from 'ramda'
 import { cache, cacheKey } from './cache'
 import { fetchMultipleFeedEntries } from './fetchFeedEntries'
 import { fetchSneakerFeeds } from './fetchSneakerFeeds'

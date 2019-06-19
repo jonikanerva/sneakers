@@ -1,5 +1,5 @@
-import * as R from 'ramda'
-import * as dotenv from 'dotenv'
+import R from 'ramda'
+import dotenv from 'dotenv'
 
 const environment = R.isNil(process.env.DYNO) ? 'local' : 'heroku'
 

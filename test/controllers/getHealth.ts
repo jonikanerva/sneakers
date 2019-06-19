@@ -1,5 +1,5 @@
 import 'jest'
-import * as supertest from 'supertest'
+import supertest from 'supertest'
 import { app } from '../../app/app'
 
 describe('health endpoint', () => {

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "incremental": true,
     "module": "commonjs",
     "noFallthroughCasesInSwitch": true,
@@ -8,6 +9,7 @@
     "noUnusedParameters": true,
     "outDir": "build",
     "pretty": true,
+    "resolveJsonModule": true,
     "rootDir": ".",
     "sourceMap": true,
     "strict": true,

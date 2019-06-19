@@ -1,4 +1,4 @@
-import * as winston from 'winston'
+import winston from 'winston'
 import { config } from '../config/config'
 
 export const logger = winston.createLogger({
