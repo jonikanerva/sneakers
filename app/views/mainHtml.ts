@@ -36,10 +36,12 @@ export const mainHtml = (styles: string, content: string) => `
     }
     ${styles}
   </style>
-</head>
+  </head>
 
-<body>
+  <body>
+  <div id="root">root here</div>
   ${content}
+  <script src="/bundle.js"></script>
 </body>
 
 </html>
