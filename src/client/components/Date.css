@@ -1,0 +1,8 @@
+.date {
+  break-before: always;
+  width: 100%;
+  flex-grow: 1;
+  font-size: 25px;
+  font-weight: 200;
+  padding: 25px 0px 10px 5px;
+}
