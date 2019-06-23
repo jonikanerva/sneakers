@@ -13,9 +13,10 @@
   },
   "scripts": {
     "start": "node build/server.js",
-    "s": "run-p watch:build watch:compile",
+    "s": "run-p touch watch:build watch:compile",
     "build": "rm -rf build && webpack --mode production",
     "test": "jest",
+    "touch": "mkdir build 2>/dev/null; touch build/server.js",
     "lint": "yarn lint:tslint && yarn lint:prettier",
     "lint:prettier": "prettier --list-different --parser typescript --config package.json '**/*.ts'",
     "lint:tslint": "tslint --project .",
