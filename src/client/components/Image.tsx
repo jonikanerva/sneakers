@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import TrackVisibility from 'react-on-screen'
+import React, { useEffect } from 'react'
 import * as R from 'ramda'
 import './Image.css'
 
@@ -28,30 +27,21 @@ const removeSmallImage = (id: string): void => {
 
 const Image: React.FC<Props> = ({ url, title, image, id }) => {
   const imageId = String(id)
-  const [visible, setVisible] = useState(false)
 
-  useEffect(() => removeSmallImage(imageId), [id, visible])
+  useEffect(() => removeSmallImage(imageId), [id])
 
   return (
-    <TrackVisibility once={true} offset={1000} className="image--tile">
-      {({ isVisible }) => {
-        setVisible(isVisible)
-
-        return (
-          isVisible && (
-            <a href={url}>
-              <img
-                id={imageId}
-                className="image--img"
-                title={title}
-                alt={title}
-                src={image}
-              />
-            </a>
-          )
-        )
-      }}
-    </TrackVisibility>
+    <div className="image--tile">
+      <a href={url}>
+        <img
+          id={imageId}
+          className="image--img"
+          title={title}
+          alt={title}
+          src={image}
+        />
+      </a>
+    </div>
   )
 }
 
