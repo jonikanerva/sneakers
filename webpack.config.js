@@ -1,3 +1,4 @@
+const R = require('ramda')
 const CopyPlugin = require('copy-webpack-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
@@ -61,4 +62,14 @@ const serverConfig = {
   ]
 }
 
-module.exports = [clientConfig, serverConfig]
+const workerConfig = R.mergeDeepRight(serverConfig, {
+  name: 'worker',
+  entry: './src/server/workers/fetchAndStore.ts',
+  output: {
+    filename: 'fetchAndStore.js',
+    path: __dirname + '/build'
+  }
+})
+
+console.log('workder', workerConfig)
+module.exports = [clientConfig, serverConfig, workerConfig]
