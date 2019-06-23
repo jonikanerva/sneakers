@@ -1,3 +1,4 @@
+const CopyPlugin = require('copy-webpack-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 
@@ -54,7 +55,10 @@ const serverConfig = {
       { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
     ]
   },
-  plugins: [new HardSourceWebpackPlugin()]
+  plugins: [
+    new HardSourceWebpackPlugin(),
+    new CopyPlugin([{ from: 'public', to: 'public' }])
+  ]
 }
 
 module.exports = [clientConfig, serverConfig]
