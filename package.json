@@ -12,16 +12,16 @@
     "yarn": "^1.16.0"
   },
   "scripts": {
-    "start": "node build/app/server.js",
+    "start": "node build/server.js",
     "s": "run-p watch:build watch:compile",
-    "build": "tsc",
+    "build": "webpack --mode production",
     "test": "jest",
     "lint": "yarn lint:tslint && yarn lint:prettier",
     "lint:prettier": "prettier --list-different --parser typescript --config package.json '**/*.ts'",
     "lint:tslint": "tslint --project .",
     "watch:test": "jest --watchAll --coverage=false",
     "watch:build": "nodemon --watch build --exec 'yarn start'",
-    "watch:compile": "tsc --watch",
+    "watch:compile": "webpack --mode development --watch",
     "worker": "node build/app/workers/fetchAndStore.js"
   },
   "dependencies": {
@@ -39,21 +39,33 @@
     "luxon": "^1.16.0",
     "md5-hex": "^3.0.0",
     "ramda": "^0.26.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "redis": "^2.8.0",
     "typescript": "^3.5.2",
     "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4",
     "@types/supertest": "^2.0.7",
+    "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^3.0.0",
+    "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
     "supertest": "^4.0.2",
     "ts-jest": "^24.0.2",
     "tslint": "^5.17.0",
-    "tslint-config-prettier": "^1.18.0"
+    "tslint-config-prettier": "^1.18.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-node-externals": "^1.7.2"
   },
   "prettier": {
     "singleQuote": true,
