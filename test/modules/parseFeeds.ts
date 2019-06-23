@@ -1,7 +1,7 @@
 /* tslint:disable:no-var-requires */
 import 'jest'
 import R from 'ramda'
-import { parseFeed, imageFromHtml } from '../../app/modules/parseFeed'
+import { parseFeed, imageFromHtml } from '../../src/server/modules/parseFeed'
 
 const feedbinResponse = require('../fixtures/feedbinResponse.json')
 

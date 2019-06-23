@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals')
 
 const clientConfig = {
   name: 'client',
-  entry: './app/client/browser.tsx',
+  entry: './src/client/browser.tsx',
   output: {
     filename: 'bundle.js',
     path: __dirname + '/build/public'
@@ -21,7 +21,7 @@ const clientConfig = {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
         options: {
-          reportFiles: ['app/client/**/*.{ts,tsx}']
+          reportFiles: ['src/client/**/*.{ts,tsx}']
         }
       },
       { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
@@ -34,7 +34,7 @@ const serverConfig = {
   name: 'server',
   target: 'node',
   externals: [nodeExternals()],
-  entry: './app/server.ts',
+  entry: './src/server/server.ts',
   output: {
     filename: 'server.js',
     path: __dirname + '/build'
