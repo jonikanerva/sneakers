@@ -71,5 +71,4 @@ const workerConfig = R.mergeDeepRight(serverConfig, {
   }
 })
 
-console.log('workder', workerConfig)
 module.exports = [clientConfig, serverConfig, workerConfig]
