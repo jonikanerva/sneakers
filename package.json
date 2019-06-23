@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node build/server.js",
     "s": "run-p watch:build watch:compile",
-    "build": "webpack --mode production",
+    "build": "rm -rf build && webpack --mode production",
     "test": "jest",
     "lint": "yarn lint:tslint && yarn lint:prettier",
     "lint:prettier": "prettier --list-different --parser typescript --config package.json '**/*.ts'",
