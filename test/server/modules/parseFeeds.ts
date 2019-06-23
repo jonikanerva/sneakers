@@ -1,9 +1,8 @@
 /* tslint:disable:no-var-requires */
 import 'jest'
 import R from 'ramda'
-import { parseFeed, imageFromHtml } from '../../src/server/modules/parseFeed'
-
-const feedbinResponse = require('../fixtures/feedbinResponse.json')
+import { parseFeed, imageFromHtml } from '../../../src/server/modules/parseFeed'
+import feedbinResponse from '../fixtures/feedbinResponse.json'
 
 describe('feedbin response parser', () => {
   it('parses it good', () => {
