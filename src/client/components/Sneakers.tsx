@@ -35,9 +35,9 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
         lastDay = day
 
         return (
-          <React.Fragment>
+          <React.Fragment key={i}>
             {dateChanged && <Date date={day} />}
-            <Image key={i} {...sneaker} />
+            <Image {...sneaker} />
           </React.Fragment>
         )
       })}
