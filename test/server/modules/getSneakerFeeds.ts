@@ -1,7 +1,7 @@
 /* tslint:disable:no-var-requires */
 import 'jest'
-import { fetchSneakerFeeds } from '../../app/modules/fetchSneakerFeeds'
-import { fetchAndParse } from '../../app/modules/fetchFeed'
+import { fetchSneakerFeeds } from '../../../src/server/modules/fetchSneakerFeeds'
+import { fetchAndParse } from '../../../src/server/modules/fetchFeed'
 
 describe('feedbin api', () => {
   it('fetches sneaker feeds', done => {

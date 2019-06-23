@@ -1,6 +1,6 @@
 import redis from 'redis'
 import R from 'ramda'
-import { config } from '../../config/config'
+import { config } from '../config/config'
 import { logger } from '../logger'
 
 const client = redis.createClient({ url: config.redisUrl })

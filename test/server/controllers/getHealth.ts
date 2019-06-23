@@ -1,6 +1,6 @@
 import 'jest'
 import supertest from 'supertest'
-import { app } from '../../app/app'
+import { app } from '../../../src/server/app'
 
 describe('health endpoint', () => {
   it('returns 200', () =>
