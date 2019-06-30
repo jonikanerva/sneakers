@@ -1,6 +1,6 @@
 # sneakers
 
-latest sneaker images from the web
+latest sneaker images from the web. uses feedbin rss feeds as a backend.
 
 # setup
 
@@ -10,7 +10,7 @@ start server `yarn build && yarn start`.
 
 start server in development watch mode `yarn s`.
 
-# Build & Push Image
+# build & push docker image
 
 ```
 yarn deploy
