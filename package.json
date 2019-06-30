@@ -23,7 +23,10 @@
     "watch:test": "jest --watchAll --coverage=false",
     "watch:build": "nodemon --watch build --exec 'yarn start'",
     "watch:compile": "webpack --mode development --watch",
-    "worker": "node build/fetchAndStore.js"
+    "worker": "node build/fetchAndStore.js",
+    "docker:build": "docker build -t registry.gitlab.com/jonikanerva/dok/sneakers:latest .",
+    "docker:push": "docker push registry.gitlab.com/jonikanerva/dok/sneakers:latest",
+    "deploy": "run-s docker:build docker:push"
   },
   "dependencies": {
     "axios": "^0.19.0",
