@@ -31,14 +31,15 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
   return (
     <div className="sneakers">
       <ScrollToTopOnMount />
-      {feed.map((sneaker, i) => {
+      {feed.map(sneaker => {
         const { published } = sneaker
         const day = formatDate(published)
         const dateChanged = lastDay !== day
+        const { image } = sneaker
         lastDay = day
 
         return (
-          <React.Fragment key={i}>
+          <React.Fragment key={image}>
             {dateChanged && <Date date={day} />}
             <Image {...sneaker} />
           </React.Fragment>
