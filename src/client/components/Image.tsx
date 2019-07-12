@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import * as R from 'ramda'
 import './Image.css'
 
@@ -28,17 +28,16 @@ const removeSmallImage = (id: string): void => {
 const Image: React.FC<Props> = ({ url, title, image, id }) => {
   const imageId = String(id)
 
-  useEffect(() => removeSmallImage(imageId), [id])
-
   return (
     <div className="image--tile">
       <a href={url}>
         <img
-          id={imageId}
-          className="image--img"
-          title={title}
           alt={title}
+          className="image--img"
+          id={imageId}
+          onLoad={() => removeSmallImage(imageId)}
           src={image}
+          title={title}
         />
       </a>
     </div>
