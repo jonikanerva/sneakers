@@ -1,5 +1,6 @@
 import React from 'react'
 import * as R from 'ramda'
+import TrackVisibility from 'react-on-screen'
 import './Image.css'
 
 interface Props {
@@ -29,18 +30,20 @@ const Image: React.FC<Props> = ({ url, title, image, id }) => {
   const imageId = String(id)
 
   return (
-    <div className="image--tile">
-      <a href={url}>
-        <img
-          alt={title}
-          className="image--img"
-          id={imageId}
-          onLoad={() => removeSmallImage(imageId)}
-          src={image}
-          title={title}
-        />
-      </a>
-    </div>
+    <TrackVisibility className="image--tile" once={true} offset={1000}>
+      {({ isVisible }) => (
+        <a href={url}>
+          <img
+            alt={title}
+            className="image--img"
+            id={imageId}
+            onLoad={() => removeSmallImage(imageId)}
+            src={isVisible ? image : ''}
+            title={title}
+          />
+        </a>
+      )}
+    </TrackVisibility>
   )
 }
 
