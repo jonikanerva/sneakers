@@ -2,13 +2,6 @@ import React, { useEffect, useState, createContext, useContext } from 'react'
 
 const VisibilityContext = createContext({ isVisible: false })
 
-const useTrackVisibilityContext = () => {
-  const { isVisible } = useContext(VisibilityContext)
-
-  return isVisible
-}
-
-type divRef = React.RefObject<HTMLDivElement>
 interface Props {
   children: React.ReactNode
   root?: Element | null
@@ -23,14 +16,14 @@ const TrackVisibility: React.FC<Props> = ({
   threshold = 0
 }) => {
   const [visible, setVisible] = useState(false)
-  const ref = React.createRef() as divRef
+  const ref = React.createRef() as React.RefObject<HTMLDivElement>
   const observerOptions = { root, rootMargin, threshold }
   const observerCallback = (entries: IntersectionObserverEntry[]) => {
     const isVisible =
       entries.filter(obj => obj.isIntersecting === true).length > 0
 
-    if (isVisible) {
-      setVisible(isVisible)
+    if (isVisible === true) {
+      setVisible(true)
     }
   }
   const observer = new IntersectionObserver(observerCallback, observerOptions)
@@ -53,6 +46,12 @@ const TrackVisibility: React.FC<Props> = ({
       </VisibilityContext.Provider>
     </div>
   )
+}
+
+const useTrackVisibilityContext = () => {
+  const { isVisible } = useContext(VisibilityContext)
+
+  return isVisible
 }
 
 export { TrackVisibility, useTrackVisibilityContext }
