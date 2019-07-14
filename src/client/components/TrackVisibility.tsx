@@ -1,5 +1,4 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
-import * as R from 'ramda'
 
 const VisibilityContext = createContext({ isVisible: false })
 
@@ -27,7 +26,8 @@ const TrackVisibility: React.FC<Props> = ({
   const ref = React.createRef() as divRef
   const observerOptions = { root, rootMargin, threshold }
   const observerCallback = (entries: IntersectionObserverEntry[]) => {
-    const isVisible = R.any(R.propEq('isIntersecting', true), entries)
+    const isVisible =
+      entries.filter(obj => obj.isIntersecting === true).length > 0
 
     if (isVisible) {
       setVisible(isVisible)
