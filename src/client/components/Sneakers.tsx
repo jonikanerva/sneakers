@@ -42,7 +42,7 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
         return (
           <React.Fragment key={`${i}-${image}`}>
             {dateChanged && <Date date={day} />}
-            <TrackVisibility visibilityOffset={500}>
+            <TrackVisibility>
               <Image {...sneaker} />
             </TrackVisibility>
           </React.Fragment>
