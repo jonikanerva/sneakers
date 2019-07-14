@@ -1,40 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
-import { throttle } from 'lodash'
-
-const isElementVisible = (element: Element | null, offset: number): boolean => {
-  if (element === null) {
-    return false
-  }
-
-  const { innerHeight, innerWidth } = window
-  const { clientHeight, clientWidth } = document.documentElement
-  const { top, left, bottom, right } = element.getBoundingClientRect()
-
-  const width = innerWidth || clientWidth
-  const height = innerHeight || clientHeight
-
-  const topThreshold = 0 - offset
-  const leftThreshold = 0 - offset
-  const rightTreshhold = width + offset
-  const bottomThreshold = height + offset
-
-  return (
-    top >= topThreshold &&
-    bottom <= bottomThreshold &&
-    left >= leftThreshold &&
-    right <= rightTreshhold
-  )
-}
-
-const attachListener = (visibilityListener: (args: any) => void): void => {
-  window.addEventListener('scroll', visibilityListener)
-  window.addEventListener('resize', visibilityListener)
-}
-
-const removeListener = (visibilityListener: (args: any) => void): void => {
-  window.removeEventListener('scroll', visibilityListener)
-  window.removeEventListener('resize', visibilityListener)
-}
+import * as R from 'ramda'
 
 const VisibilityContext = createContext({ isVisible: false })
 
@@ -47,35 +12,39 @@ const useTrackVisibilityContext = () => {
 type divRef = React.RefObject<HTMLDivElement>
 interface Props {
   children: React.ReactNode
-  throttleWait?: number
-  visibilityOffset?: number
+  root?: Element | null
+  rootMargin?: string
+  threshold?: number
 }
 
 const TrackVisibility: React.FC<Props> = ({
   children,
-  throttleWait = 300,
-  visibilityOffset = 500
+  root = null,
+  rootMargin = '50px 50px 50px 50px',
+  threshold = 0
 }) => {
   const [visible, setVisible] = useState(false)
   const ref = React.createRef() as divRef
+  const observerOptions = { root, rootMargin, threshold }
+  const observerCallback = (entries: IntersectionObserverEntry[]) => {
+    const isVisible = R.any(R.propEq('isIntersecting', true), entries)
 
-  const checkVisibility = throttle(
-    () => setVisible(isElementVisible(ref.current, visibilityOffset)),
-    throttleWait
-  )
-
-  useEffect(() => {
-    attachListener(checkVisibility)
-    setVisible(isElementVisible(ref.current, visibilityOffset))
-
-    return () => removeListener(checkVisibility)
-  }, [ref])
-
-  useEffect(() => {
-    if (visible === true) {
-      removeListener(checkVisibility)
+    if (isVisible) {
+      setVisible(isVisible)
     }
-  }, [visible])
+  }
+  const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+  useEffect(() => {
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current)
+      }
+    }
+  }, [ref])
 
   return (
     <div ref={ref}>
