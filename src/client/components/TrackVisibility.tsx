@@ -1,10 +1,7 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
 import { throttle } from 'lodash'
 
-export const isElementVisible = (
-  element: Element | null,
-  offset: number
-): boolean => {
+const isElementVisible = (element: Element | null, offset: number): boolean => {
   if (element === null) {
     return false
   }
