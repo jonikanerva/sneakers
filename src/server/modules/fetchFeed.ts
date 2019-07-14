@@ -25,4 +25,6 @@ const query = (brand: string) => (obj: any) =>
   R.includes(brand, R.toLower(obj.content))
 
 export const fetchFeedFor = (brand: string): Promise<any> =>
-  fetchFeed().then(R.filter(query(brand)))
+  fetchFeed()
+    .then(R.filter(query(brand)))
+    .then((feed: any) => R.take(75, feed))
