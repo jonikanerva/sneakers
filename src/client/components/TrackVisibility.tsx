@@ -22,22 +22,23 @@ const TrackVisibility: React.FC<Props> = ({
     const isVisible =
       entries.filter(obj => obj.isIntersecting === true).length > 0
 
-    if (isVisible === true) {
-      setVisible(true)
-    }
+    setVisible(isVisible)
   }
-  const observer = new IntersectionObserver(observerCallback, observerOptions)
 
   useEffect(() => {
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
     if (ref.current) {
       observer.observe(ref.current)
     }
+
     return () => {
       if (ref.current) {
         observer.unobserve(ref.current)
       }
+      observer.disconnect()
     }
-  }, [ref])
+  }, [])
 
   return (
     <div ref={ref}>
@@ -48,10 +49,10 @@ const TrackVisibility: React.FC<Props> = ({
   )
 }
 
-const useTrackVisibilityContext = () => {
+const useTrackVisibility = () => {
   const { isVisible } = useContext(VisibilityContext)
 
   return isVisible
 }
 
-export { TrackVisibility, useTrackVisibilityContext }
+export { TrackVisibility, useTrackVisibility }
