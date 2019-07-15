@@ -28,7 +28,7 @@ const removeSmallImage = (id: string): void => {
 
 const Image: React.FC<Props> = ({ url, title, image, id }) => {
   const imageId = String(id)
-  const isVisible = useTrackVisibility()
+  const { isVisible } = useTrackVisibility()
 
   return (
     <div className="image--tile">
