@@ -1,6 +1,6 @@
 import React from 'react'
 import * as R from 'ramda'
-import { useVisibilityObserver } from './TrackVisibility'
+import { useVisibilityObserver } from 'react-visibility-observer'
 import './Image.css'
 
 interface Props {

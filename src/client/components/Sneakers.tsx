@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import Date from './Date'
 import Image from './Image'
 import ScrollToTopOnMount from './ScrollToTopOnMount'
-import { VisibilityObeserver } from './TrackVisibility'
+import VisibilityObeserver from 'react-visibility-observer'
 
 import './Sneakers.css'
 
