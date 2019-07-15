@@ -1,6 +1,6 @@
 import React from 'react'
 import * as R from 'ramda'
-import { useTrackVisibility } from './TrackVisibility'
+import { useVisibilityObserver } from './TrackVisibility'
 import './Image.css'
 
 interface Props {
@@ -28,7 +28,7 @@ const removeSmallImage = (id: string): void => {
 
 const Image: React.FC<Props> = ({ url, title, image, id }) => {
   const imageId = String(id)
-  const { isVisible } = useTrackVisibility()
+  const { isVisible } = useVisibilityObserver()
 
   return (
     <div className="image--tile">

@@ -9,7 +9,7 @@ interface Props extends IntersectionObserverInit {
   threshold?: number | number[]
 }
 
-const TrackVisibility: React.FC<Props> = ({
+const VisibilityObeserver: React.FC<Props> = ({
   children,
   root = null,
   rootMargin = '50px 50px 50px 50px',
@@ -52,7 +52,7 @@ const TrackVisibility: React.FC<Props> = ({
   )
 }
 
-const useTrackVisibility = () => {
+const useVisibilityObserver = () => {
   const { isVisible, entries } = useContext(VisibilityContext)
 
   return {
@@ -61,4 +61,4 @@ const useTrackVisibility = () => {
   }
 }
 
-export { TrackVisibility, useTrackVisibility }
+export { VisibilityObeserver, useVisibilityObserver }

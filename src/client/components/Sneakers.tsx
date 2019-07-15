@@ -3,9 +3,9 @@ import { DateTime } from 'luxon'
 import Date from './Date'
 import Image from './Image'
 import ScrollToTopOnMount from './ScrollToTopOnMount'
+import { VisibilityObeserver } from './TrackVisibility'
 
 import './Sneakers.css'
-import { TrackVisibility } from './TrackVisibility'
 
 interface Props {
   brand: 'nike' | 'jordan' | 'adidas'
@@ -42,9 +42,9 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
         return (
           <React.Fragment key={`${i}-${image}`}>
             {dateChanged && <Date date={day} />}
-            <TrackVisibility>
+            <VisibilityObeserver>
               <Image {...sneaker} />
-            </TrackVisibility>
+            </VisibilityObeserver>
           </React.Fragment>
         )
       })}
