@@ -1,12 +1,12 @@
 import React, { useEffect, useState, createContext, useContext } from 'react'
 
-const VisibilityContext = createContext({ isVisible: false })
+const VisibilityContext = createContext({ isVisible: false, entries: [] })
 
-interface Props {
+interface Props extends IntersectionObserverInit {
   children: React.ReactNode
   root?: Element | null
   rootMargin?: string
-  threshold?: number
+  threshold?: number | number[]
 }
 
 const TrackVisibility: React.FC<Props> = ({
@@ -15,14 +15,17 @@ const TrackVisibility: React.FC<Props> = ({
   rootMargin = '50px 50px 50px 50px',
   threshold = 0
 }) => {
-  const [visible, setVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [entries, setEntries] = useState()
   const ref = React.createRef() as React.RefObject<HTMLDivElement>
-  const observerOptions = { root, rootMargin, threshold }
-  const observerCallback = (entries: IntersectionObserverEntry[]) => {
-    const isVisible =
-      entries.filter(obj => obj.isIntersecting === true).length > 0
 
-    setVisible(isVisible)
+  const observerOptions = { root, rootMargin, threshold }
+  const observerCallback: IntersectionObserverCallback = observerEntries => {
+    const visible =
+      observerEntries.filter(obj => obj.isIntersecting === true).length > 0
+
+    setEntries(observerEntries)
+    setIsVisible(visible)
   }
 
   useEffect(() => {
@@ -42,7 +45,7 @@ const TrackVisibility: React.FC<Props> = ({
 
   return (
     <div ref={ref}>
-      <VisibilityContext.Provider value={{ isVisible: visible }}>
+      <VisibilityContext.Provider value={{ isVisible, entries }}>
         {children}
       </VisibilityContext.Provider>
     </div>
@@ -50,9 +53,12 @@ const TrackVisibility: React.FC<Props> = ({
 }
 
 const useTrackVisibility = () => {
-  const { isVisible } = useContext(VisibilityContext)
+  const { isVisible, entries } = useContext(VisibilityContext)
 
-  return isVisible
+  return {
+    isVisible,
+    entries: entries as IntersectionObserverEntry[]
+  }
 }
 
 export { TrackVisibility, useTrackVisibility }
