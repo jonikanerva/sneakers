@@ -42,7 +42,7 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
         return (
           <React.Fragment key={`${i}-${image}`}>
             {dateChanged && <Date date={day} />}
-            <VisibilityObeserver>
+            <VisibilityObeserver rootMargin="200px 200px 200px 200px">
               <Image {...sneaker} />
             </VisibilityObeserver>
           </React.Fragment>
