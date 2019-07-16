@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import Date from './Date'
 import Image from './Image'
 import ScrollToTopOnMount from './ScrollToTopOnMount'
-import VisibilityObeserver from 'react-visibility-observer'
+import VisibilityObserver from 'react-visibility-observer'
 
 import './Sneakers.css'
 
@@ -42,9 +42,12 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
         return (
           <React.Fragment key={`${i}-${image}`}>
             {dateChanged && <Date date={day} />}
-            <VisibilityObeserver rootMargin="200px 200px 200px 200px">
+            <VisibilityObserver
+              rootMargin="200px 200px 200px 200px"
+              triggerOnce={true}
+            >
               <Image {...sneaker} />
-            </VisibilityObeserver>
+            </VisibilityObserver>
           </React.Fragment>
         )
       })}
