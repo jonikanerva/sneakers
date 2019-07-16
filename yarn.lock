@@ -5097,10 +5097,10 @@ react-router@5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-visibility-observer@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-visibility-observer/-/react-visibility-observer-1.0.2.tgz#b3422fc5e064f126441086958122b9cc11b859d1"
-  integrity sha512-lvI1MFbwiAsMjdhRDibjnbTxjiR4+tYzJFvLzmNlFeBH0eZkkY9N0Tjms/YUx0fDKTgS74U1vyIMohQBVp2EEg==
+react-visibility-observer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-visibility-observer/-/react-visibility-observer-1.0.3.tgz#39edccda86f1db757702c5381e5119efd430dcff"
+  integrity sha512-v4cNyNKCc2KtaaDyB1reyu/Z8yXjt17JV6ujGnmitVckEXaJA3sXo3XabF/pqwfov7yOnalTbrO04URVcZgDeQ==
 
 react@^16.8.6:
   version "16.8.6"

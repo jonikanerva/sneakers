@@ -39,7 +39,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
-    "react-visibility-observer": "^1.0.2",
+    "react-visibility-observer": "^1.0.3",
     "redis": "^2.8.0",
     "winston": "^3.2.1"
   },
