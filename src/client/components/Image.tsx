@@ -31,18 +31,16 @@ const Image: React.FC<Props> = ({ url, title, image, id }) => {
   const { isVisible } = useVisibilityObserver()
 
   return (
-    <div className="image--tile">
-      <a href={url}>
-        <img
-          alt={title}
-          className="image--img"
-          id={imageId}
-          onLoad={() => removeSmallImage(imageId)}
-          src={isVisible ? image : ''}
-          title={title}
-        />
-      </a>
-    </div>
+    <a href={url}>
+      <img
+        alt={title}
+        className="image--img"
+        id={imageId}
+        onLoad={() => removeSmallImage(imageId)}
+        src={isVisible ? image : ''}
+        title={title}
+      />
+    </a>
   )
 }
 
