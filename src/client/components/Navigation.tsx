@@ -6,6 +6,13 @@ import './Navigation.css'
 const Navigation: React.FC = () => (
   <div className="navigation">
     <NavLink
+      to="/jordan"
+      className="navigation--link"
+      activeClassName="navigation--active"
+    >
+      jordan
+    </NavLink>
+    <NavLink
       to="/nike"
       className="navigation--link"
       activeClassName="navigation--active"
@@ -13,11 +20,11 @@ const Navigation: React.FC = () => (
       nike
     </NavLink>
     <NavLink
-      to="/jordan"
+      to="/newbalance"
       className="navigation--link"
       activeClassName="navigation--active"
     >
-      jordan
+      nb
     </NavLink>
     <NavLink
       to="/adidas"

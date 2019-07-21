@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { fetchFeedFor } from '../modules/fetchFeed'
 
 const parseBrand = (brand: string): Promise<string> => {
-  const allowed = ['adidas', 'nike', 'jordan']
+  const allowed = ['adidas', 'nike', 'jordan', 'newbalance']
 
   return allowed.includes(brand)
     ? Promise.resolve(brand)

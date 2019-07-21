@@ -8,7 +8,7 @@ import VisibilityObserver from 'react-visibility-observer'
 import './Sneakers.css'
 
 interface Props {
-  brand: 'nike' | 'jordan' | 'adidas'
+  brand: 'nike' | 'jordan' | 'adidas' | 'newbalance'
 }
 
 const formatDate = (date: string): string =>

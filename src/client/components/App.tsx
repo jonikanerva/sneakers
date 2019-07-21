@@ -13,10 +13,14 @@ const App: React.FC = () => (
   <Router>
     <Navigation />
     <Switch>
-      <Route path="/nike" render={() => <Sneakers brand="nike" />} />
-      <Route path="/jordan" render={() => <Sneakers brand="jordan" />} />
       <Route path="/adidas" render={() => <Sneakers brand="adidas" />} />
-      <Route path="/" render={() => <Redirect to="/nike" />} />
+      <Route path="/jordan" render={() => <Sneakers brand="jordan" />} />
+      <Route
+        path="/newbalance"
+        render={() => <Sneakers brand="newbalance" />}
+      />
+      <Route path="/nike" render={() => <Sneakers brand="nike" />} />
+      <Route path="/" render={() => <Redirect to="/jordan" />} />
     </Switch>
   </Router>
 )

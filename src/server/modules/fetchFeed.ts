@@ -21,8 +21,11 @@ export const fetchFeed = (): Promise<any> => {
     .then(JSON.parse)
 }
 
-const query = (brand: string) => (obj: any) =>
-  R.includes(brand, R.toLower(obj.content))
+const query = (brand: string) => (obj: any) => {
+  const queryStrign = brand === 'newbalance' ? 'new balance' : brand
+
+  return R.includes(queryStrign, R.toLower(obj.content))
+}
 
 export const fetchFeedFor = (brand: string): Promise<any> =>
   fetchFeed()
