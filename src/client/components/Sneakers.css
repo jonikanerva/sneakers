@@ -4,3 +4,10 @@
   flex-wrap: wrap;
   width: 100%;
 }
+
+.sneakers--tile {
+  max-height: 300px;
+  overflow: hidden;
+  flex: 1 1 350px;
+  padding: 2px 2px;
+}

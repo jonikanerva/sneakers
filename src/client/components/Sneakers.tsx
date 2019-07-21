@@ -43,6 +43,7 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
           <React.Fragment key={`${i}-${image}`}>
             {dateChanged && <Date date={day} />}
             <VisibilityObserver
+              className="sneakers--tile"
               rootMargin="200px 200px 200px 200px"
               triggerOnce={true}
             >
