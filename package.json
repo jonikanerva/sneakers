@@ -60,10 +60,15 @@
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^3.0.0",
+    "cssnano": "^4.1.10",
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^24.8.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
     "prettier": "^1.18.2",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
@@ -74,6 +79,7 @@
     "typescript": "^3.5.3",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
+    "webpack-manifest-plugin": "^2.0.4",
     "webpack-node-externals": "^1.7.2"
   },
   "prettier": {

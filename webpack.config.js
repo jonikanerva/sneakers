@@ -1,35 +1,72 @@
 const R = require('ramda')
 const CopyPlugin = require('copy-webpack-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const nodeExternals = require('webpack-node-externals')
 
 const clientConfig = {
   name: 'client',
   entry: './src/client/browser.tsx',
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[chunkhash].js',
     path: __dirname + '/build/public'
   },
   devtool: 'source-map',
   cache: true,
-  resolve: { extensions: ['.ts', '.tsx', '.js'] },
+  resolve: { extensions: ['.ts', '.tsx', '.js', '.json'] },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: __dirname + '/postcss.config.js'
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
         options: {
-          reportFiles: ['src/client/**/*.{ts,tsx}']
+          useCache: true,
+          cacheDirectory: __dirname + '/build/.awcache',
+          reportFiles: ['src/**/*.{ts,tsx}']
         }
       },
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'source-map-loader'
+      },
+      {
+        test: /\.ttf$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name]_[hash].[ext]'
+        }
+      }
     ]
   },
-  plugins: [new HardSourceWebpackPlugin()]
+  plugins: [
+    new HardSourceWebpackPlugin(),
+    new ManifestPlugin({
+      fileName: __dirname + '/manifest.json'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.[chunkhash].css'
+    })
+  ]
 }
 
 const serverConfig = {
@@ -46,14 +83,31 @@ const serverConfig = {
   },
   devtool: 'source-map',
   cache: true,
-  resolve: { extensions: ['.ts', '.tsx', '.js'] },
+  resolve: { extensions: ['.ts', '.tsx', '.js', '.json'] },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
+        test: /\.css$/,
+        loader: 'css-loader',
+        options: {
+          onlyLocals: true
+        }
       },
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        options: {
+          useCache: true,
+          cacheDirectory: __dirname + '/build/.awcache',
+          reportFiles: ['src/**/*.{ts,tsx}']
+        }
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'source-map-loader'
+      }
     ]
   },
   plugins: [

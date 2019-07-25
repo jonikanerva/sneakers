@@ -3,3 +3,4 @@ build
 coverage
 dump.rdb
 node_modules
+manifest.json
