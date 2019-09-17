@@ -40,7 +40,7 @@ const clientConfig = {
         options: {
           useCache: true,
           cacheDirectory: __dirname + '/build/.awcache',
-          reportFiles: ['src/**/*.{ts,tsx}']
+          reportFiles: ['src/client/**/*.{ts,tsx}']
         }
       },
       {
