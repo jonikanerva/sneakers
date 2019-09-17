@@ -24,8 +24,8 @@
     "watch:build": "nodemon --watch build --exec 'yarn start'",
     "watch:compile": "webpack --mode development --watch",
     "worker": "node build/fetchAndStore.js",
-    "docker:build": "docker build -t registry.gitlab.com/jonikanerva/dok/sneakers:latest .",
-    "docker:push": "docker push registry.gitlab.com/jonikanerva/dok/sneakers:latest",
+    "docker:build": "docker build -t docker.pkg.github.com/jonikanerva/dok8s/sneakers:latest .",
+    "docker:push": "docker push docker.pkg.github.com/jonikanerva/dok8s/sneakers:latest",
     "deploy": "run-s docker:build docker:push"
   },
   "dependencies": {
