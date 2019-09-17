@@ -20,9 +20,9 @@ RUN ["yarn", "build"]
 FROM node:10.16-alpine
 # leave only built files, and install production deps
 WORKDIR /sneakers
-COPY --from=builder /workdir/package.json .
-COPY --from=builder /workdir/yarn.lock .
-COPY --from=builder /workdir/build .
+COPY --from=builder /workdir/package.json /sneakers
+COPY --from=builder /workdir/yarn.lock /sneakers
+COPY --from=builder /workdir/build /sneakers/build
 RUN ["yarn", "install", "--production=true", "--no-progress"]
 
 # start
