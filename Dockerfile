@@ -1,4 +1,4 @@
-FROM node:10.16-alpine
+FROM node:10.16-alpine AS builder
 
 ENV PORT 3100
 ENV NODE_ENV production
@@ -17,15 +17,13 @@ COPY yarn.lock /workdir
 RUN ["yarn", "install", "--production=false", "--no-progress"]
 RUN ["yarn", "build"]
 
+FROM node:10.16-alpine
 # leave only built files, and install production deps
 WORKDIR /sneakers
-COPY package.json /sneakers
-COPY yarn.lock /sneakers
-RUN ["cp", "-R", "/workdir/build", "."]
+COPY --from=builder /workdir/package.json .
+COPY --from=builder /workdir/yarn.lock .
+COPY --from=builder /workdir/build .
 RUN ["yarn", "install", "--production=true", "--no-progress"]
-
-# remove workdir
-RUN ["rm", "-rf", "/workdir"]
 
 # start
 CMD ["yarn", "start"]
