@@ -8,6 +8,7 @@ WORKDIR /workdir
 COPY src /workdir/src
 COPY public /workdir/public
 COPY package.json /workdir
+COPY postcss.config.js /workdir
 COPY tsconfig.json /workdir
 COPY webpack.config.js /workdir
 COPY yarn.lock /workdir
