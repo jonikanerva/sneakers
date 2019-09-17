@@ -14,7 +14,11 @@
   "scripts": {
     "start": "node build/server.js",
     "s": "run-p touch watch:build watch:compile",
-    "build": "rm -rf build && webpack --mode production",
+    "build": "run-s build:*",
+    "build:clean": "rm -rf build",
+    "build:client": "webpack --mode production --config-name client",
+    "build:server": "webpack --mode production --config-name server",
+    "build:worker": "webpack --mode production --config-name worker",
     "test": "jest",
     "touch": "mkdir build 2>/dev/null; touch build/server.js",
     "lint": "yarn lint:tslint && yarn lint:prettier",
