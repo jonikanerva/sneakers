@@ -5,6 +5,6 @@
   font-size: 25px;
   font-weight: 200;
   padding: 25px 0px 0px 5px;
-  border-bottom: 1px solid rgb(218, 218, 218);
+  border-bottom: 1px solid var(--main-border-color);
   margin-bottom: 20px;
 }
