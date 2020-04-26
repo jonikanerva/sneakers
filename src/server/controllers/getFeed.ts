@@ -15,10 +15,10 @@ export const getFeed = (
   _next: NextFunction
 ): Promise<void> =>
   parseBrand(req.params.brand)
-    .then(brand => fetchFeedFor(brand))
-    .then(feed => {
+    .then((brand) => fetchFeedFor(brand))
+    .then((feed) => {
       res.json(feed)
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(400).json({ error })
     })

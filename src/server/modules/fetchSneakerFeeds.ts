@@ -17,15 +17,15 @@ export const fetchSneakerFeeds = (): Promise<any> => {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'If-Modified-Since': lastEtag,
-      'If-None-Match': lastDate
+      'If-None-Match': lastDate,
     },
     auth: {
       username: config.feedbin.username,
-      password: config.feedbin.password
+      password: config.feedbin.password,
     },
-    timeout: 20000 // number of milliseconds before the request times out
+    timeout: 20000, // number of milliseconds before the request times out
   })
-    .then(response => {
+    .then((response) => {
       const { etag, date } = response.headers
 
       headerCache = { etag, date }
