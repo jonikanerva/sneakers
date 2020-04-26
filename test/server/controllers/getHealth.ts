@@ -6,7 +6,7 @@ describe('health endpoint', () => {
   it('returns 200', () =>
     supertest(app)
       .get('/health')
-      .then(response => {
+      .then((response) => {
         expect(response.status).toBe(200)
         expect(response.body).toEqual({ status: 'ok' })
       }))

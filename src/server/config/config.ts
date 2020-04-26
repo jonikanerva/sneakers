@@ -22,9 +22,9 @@ export const config: Config = {
   environment,
   feedbin: {
     username: process.env.FEEDBIN_USER || '',
-    password: process.env.FEEDBIN_PASS || ''
+    password: process.env.FEEDBIN_PASS || '',
   },
   logLevel: environment === 'local' ? 'silly' : 'info',
   port: process.env.PORT || '3000',
-  redisUrl: process.env.REDIS_URL || ''
+  redisUrl: process.env.REDIS_URL || '',
 }

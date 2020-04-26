@@ -6,7 +6,7 @@ import R from 'ramda'
 
 const devIp = R.compose(
   R.path([0, 'address']),
-  R.filter(R.propEq('internal', false)),
+  <any>R.filter(R.propEq('internal', false)),
   R.filter(R.propEq('family', 'IPv4')),
   <any>R.flatten,
   R.values

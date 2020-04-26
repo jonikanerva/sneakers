@@ -25,7 +25,7 @@ const pickFields = (item: any): any => {
 
   return {
     ...fields,
-    image: imageFromHtml(html)
+    image: imageFromHtml(html),
   }
 }
 

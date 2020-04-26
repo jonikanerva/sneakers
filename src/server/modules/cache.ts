@@ -26,7 +26,7 @@ export const cacheSet = (
   )
 
 const getOrSet = (key: string, period: number, fnc: any): Promise<any> =>
-  cacheGet(key).then(data =>
+  cacheGet(key).then((data) =>
     !R.isEmpty(data) && !R.isNil(data)
       ? data
       : fnc().then((response: any) => cacheSet(key, period, response))
@@ -34,7 +34,7 @@ const getOrSet = (key: string, period: number, fnc: any): Promise<any> =>
 
 export const cache = (cachePeriodSeconds: number) => ({
   readOrElse: (key: string, fnc: any): Promise<any> =>
-    getOrSet(key, cachePeriodSeconds, fnc)
+    getOrSet(key, cachePeriodSeconds, fnc),
 })
 
 export const cacheKey = 'feeds-v1'

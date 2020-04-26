@@ -5,7 +5,7 @@ import { config } from '../config/config'
 let headerCache = {}
 
 export const fetchMultipleFeedEntries = (ids: number[]): Promise<any> =>
-  Promise.all(R.map(id => fetchFeedEntries(id), ids)).then(R.flatten)
+  Promise.all(R.map((id) => fetchFeedEntries(id), ids)).then(R.flatten)
 
 export const fetchFeedEntries = (id: number): Promise<any> => {
   const lastEtag = R.pathOr('', [id, 'etag'], headerCache)
@@ -20,15 +20,15 @@ export const fetchFeedEntries = (id: number): Promise<any> => {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'If-Modified-Since': lastEtag,
-      'If-None-Match': lastDate
+      'If-None-Match': lastDate,
     },
     auth: {
       username: config.feedbin.username,
-      password: config.feedbin.password
+      password: config.feedbin.password,
     },
-    timeout: 20000 // number of milliseconds before the request times out
+    timeout: 20000, // number of milliseconds before the request times out
   })
-    .then(response => {
+    .then((response) => {
       const { etag, date } = response.headers
 
       headerCache = R.assoc(<any>id, { etag, date }, headerCache)
