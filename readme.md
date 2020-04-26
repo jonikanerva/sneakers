@@ -15,7 +15,3 @@ start server in development watch mode `yarn s`.
 ```
 yarn deploy
 ```
-
-# deploy
-
-deploy files and instructions can be found from https://gitlab.com/jonikanerva/dok
