@@ -16,8 +16,8 @@ const formatDate = (date: string): string =>
     weekday: 'long',
     month: 'numeric',
     day: 'numeric',
-    year: 'numeric'
-  })
+    year: 'numeric',
+  }) || ''
 
 const Sneakers: React.FC<Props> = ({ brand }) => {
   let lastDay = ''
@@ -25,7 +25,7 @@ const Sneakers: React.FC<Props> = ({ brand }) => {
 
   useEffect(() => {
     fetch(`/feed/${brand}`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(setFeed)
   }, [brand])
 
