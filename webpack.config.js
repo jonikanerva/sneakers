@@ -10,7 +10,7 @@ const clientConfig = {
   entry: './src/client/browser.tsx',
   output: {
     filename: 'bundle.[chunkhash].js',
-    path: __dirname + '/build/public'
+    path: __dirname + '/build/public',
   },
   devtool: 'source-map',
   cache: true,
@@ -22,17 +22,17 @@ const clientConfig = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
             loader: 'postcss-loader',
             options: {
               config: {
-                path: __dirname + '/postcss.config.js'
-              }
-            }
-          }
-        ]
+                path: __dirname + '/postcss.config.js',
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.tsx?$/,
@@ -40,33 +40,33 @@ const clientConfig = {
         options: {
           useCache: true,
           cacheDirectory: __dirname + '/build/.awcache',
-          reportFiles: ['src/client/**/*.{ts,tsx}']
-        }
+          reportFiles: ['src/client/**/*.{ts,tsx}'],
+        },
       },
       {
         enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'source-map-loader'
+        loader: 'source-map-loader',
       },
       {
         test: /\.ttf$/,
         loader: 'file-loader',
         options: {
-          name: '[name]_[hash].[ext]'
-        }
-      }
-    ]
+          name: '[name]_[hash].[ext]',
+        },
+      },
+    ],
   },
   plugins: [
     new HardSourceWebpackPlugin(),
     new ManifestPlugin({
-      fileName: __dirname + '/manifest.json'
+      fileName: __dirname + '/manifest.json',
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.[chunkhash].css'
-    })
-  ]
+      filename: 'style.[chunkhash].css',
+    }),
+  ],
 }
 
 const serverConfig = {
@@ -76,10 +76,10 @@ const serverConfig = {
   entry: './src/server/server.ts',
   output: {
     filename: 'server.js',
-    path: __dirname + '/build'
+    path: __dirname + '/build',
   },
   optimization: {
-    nodeEnv: false
+    nodeEnv: false,
   },
   devtool: 'source-map',
   cache: true,
@@ -90,8 +90,10 @@ const serverConfig = {
         test: /\.css$/,
         loader: 'css-loader',
         options: {
-          onlyLocals: true
-        }
+          modules: {
+            exportOnlyLocals: true,
+          },
+        },
       },
       {
         test: /\.tsx?$/,
@@ -99,21 +101,21 @@ const serverConfig = {
         options: {
           useCache: true,
           cacheDirectory: __dirname + '/build/.awcache',
-          reportFiles: ['src/**/*.{ts,tsx}']
-        }
+          reportFiles: ['src/**/*.{ts,tsx}'],
+        },
       },
       {
         enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'source-map-loader'
-      }
-    ]
+        loader: 'source-map-loader',
+      },
+    ],
   },
   plugins: [
     new HardSourceWebpackPlugin(),
-    new CopyPlugin([{ from: 'public', to: 'public' }])
-  ]
+    new CopyPlugin({ patterns: [{ from: 'public', to: 'public' }] }),
+  ],
 }
 
 const workerConfig = R.mergeDeepRight(serverConfig, {
@@ -121,8 +123,8 @@ const workerConfig = R.mergeDeepRight(serverConfig, {
   entry: './src/server/workers/fetchAndStore.ts',
   output: {
     filename: 'fetchAndStore.js',
-    path: __dirname + '/build'
-  }
+    path: __dirname + '/build',
+  },
 })
 
 module.exports = [clientConfig, serverConfig, workerConfig]
